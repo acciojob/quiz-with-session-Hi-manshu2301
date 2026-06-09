@@ -62,7 +62,7 @@ function renderQuestions() {
 		choiceElement.addEventListener("change",function(){
 			userAnswers[i] = choice;
 			sessionStorage.setItem(
-				"progress",JSON.stringfy(userAnswers);
+				"progress",JSON.stringify(userAnswers);
 			);
 		});
       const choiceText = document.createTextNode(choice);
