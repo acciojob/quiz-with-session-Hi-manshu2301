@@ -2,8 +2,8 @@
 const questionsElement = document.getElementById("questions");
 const scoreElement = document.getElementById("score");
 
-let userAnswers = JSON.parse(sessionStorage.getItem("progress"))||[];
-const savedScore = sessionStorage.getItem("score");
+let userAnswers = JSON.parse(sessionStorage.getItem("progress")) || [];
+const savedScore = localStorage.getItem("score");
 
 if(savedScore !== null){
 	scoreElement.innerText = `Your score is ${savedScore} out of 5.`;
@@ -62,7 +62,7 @@ function renderQuestions() {
 		choiceElement.addEventListener("change",function(){
 			userAnswers[i] = choice;
 			sessionStorage.setItem(
-				"progress",JSON.stringify(userAnswers);
+				"progress",JSON.stringify(userAnswers)
 			);
 		});
       const choiceText = document.createTextNode(choice);
@@ -81,7 +81,7 @@ document.getElementById("submit").addEventListener("click",function(){
 			
 		}
 	}
-	scoreElement.innerText = `Your score is ${score} out of 5`;
+	scoreElement.innerText = `Your score is ${score} out of 5.`;
 	localStorage.setItem("score",score);
 });
 
