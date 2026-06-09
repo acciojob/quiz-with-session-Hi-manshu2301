@@ -1,4 +1,17 @@
 //your JS code here.
+const questionsElement = document.getElementById("questions");
+const scoreElement = document.getElementById("score");
+
+let userAnswers = JSON.parse(sessionStorage.getItem("progress"))||[];
+const savedScore = sessionStorage.getItem("score");
+
+if(savedScore !== null){
+	scoreElement.innerText = `Your score is ${savedScore} out of 5.`;
+	
+}
+
+
+
 
 // Do not change code below this line
 // This code will just display the questions to the screen
@@ -46,6 +59,12 @@ function renderQuestions() {
       if (userAnswers[i] === choice) {
         choiceElement.setAttribute("checked", true);
       }
+		choiceElement.addEventListener("change",function(){
+			userAnswers[i] = choice;
+			sessionStorage.setItem(
+				"progress",JSON.stringfy(userAnswers);
+			);
+		});
       const choiceText = document.createTextNode(choice);
       questionElement.appendChild(choiceElement);
       questionElement.appendChild(choiceText);
@@ -54,3 +73,22 @@ function renderQuestions() {
   }
 }
 renderQuestions();
+document.getElementById("submit").addEventListener("click",function(){
+	let score = 0;
+	for(let i=0; i<questions.lenght; i++){
+		if(userAnswers[i] === questions[i].answer){
+			score++;
+			
+		}
+	}
+	scoreElement.innerText = `Your score is ${score} out of 5`;
+	localStorage.setItem("score",score);
+});
+
+
+
+
+
+
+
+
